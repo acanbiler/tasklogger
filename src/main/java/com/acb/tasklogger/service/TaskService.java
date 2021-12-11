@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,8 +19,8 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Task getTask(Long id) {
-        return taskRepository.getById(id);
+    public Optional<Task> getTask(Long id) {
+        return taskRepository.findById(id);
     }
 
     public void addTask(Task task) {

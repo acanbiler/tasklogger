@@ -27,7 +27,7 @@ public class Task {
     private String assignee;
 
     @Column(name = "ISTASKFINISHED")
-    private boolean isTaskFinished;
+    private String isTaskFinished;
 
     @ElementCollection
     private List<Integer> subTaskIds;

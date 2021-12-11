@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/task")
@@ -17,11 +19,11 @@ public class TaskController {
 
     @GetMapping(value = "/get/{id}")
     public ResponseEntity<Task> getTask(@PathVariable Long id) {
-        Task task = taskService.getTask(id);
+        Optional<Task> task = taskService.getTask(id);
 
-        if (task.getId() < 1)
+        if (task.isEmpty())
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        return ResponseEntity.ok(task);
+        return ResponseEntity.ok(task.get());
     }
 
     @GetMapping(value = "/list")
